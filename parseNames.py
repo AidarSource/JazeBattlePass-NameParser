@@ -13,6 +13,7 @@ if b < 2:
 # start page
 i = 1
 while True:
+    # disable jaze guard. turn off html 'mod_security'
     link = 'https://jaze.ru/forum/topic?id=50&page='+str(i)
     my_url = Request(
         link,
