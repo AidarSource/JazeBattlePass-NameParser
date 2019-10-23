@@ -12,6 +12,7 @@ if b < 2:
     b += 1
 # start page
 i = 1
+names = set()
 while True:
     # disable jaze guard. turn off html 'mod_security'
     link = 'https://jaze.ru/forum/topic?id=50&page='+str(i)
@@ -33,5 +34,8 @@ while True:
 
     for container in containers:
         playerName = container.div.a.text.strip()
-        print("BattlePass PlayerName: " + playerName)
-        f.write(playerName + "\n")
+        names.add(playerName)
+
+for name in names:
+    f.write(name + "\n")
+f.close()
