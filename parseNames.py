@@ -6,13 +6,10 @@ from bs4 import BeautifulSoup as soup
 filename = "BattlePassNicknames.csv"
 f = open(filename, "a", encoding="utf-8")
 headers1 = "Member of JAZE Battle Pass 2019\n"
-b = 1
-if b < 2:
-    f.write(headers1)
-    b += 1
+f.write(headers1)
 # start page
+names = []
 i = 1
-names = set()
 while True:
     # disable jaze guard. turn off html 'mod_security'
     link = 'https://jaze.ru/forum/topic?id=50&page='+str(i)
@@ -34,7 +31,8 @@ while True:
 
     for container in containers:
         playerName = container.div.a.text.strip()
-        names.add(playerName)
+        if playerName not in names:
+            names.append(playerName)
 
 for name in names:
     f.write(name + "\n")
